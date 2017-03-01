@@ -13,20 +13,14 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-/**
- * This UI is the application entry point. A UI may either represent a browser window 
- * (or tab) or some part of a html page where a Vaadin application is embedded.
- * <p>
- * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be 
- * overridden to add component to the user interface and initialize non-component functionality.
- */
+
 @Theme("mytheme")
 public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
-        
+        //initializing objects
+    	final VerticalLayout layout = new VerticalLayout();
         final TextField email = new TextField();
         final Label require = new Label();
         final Label valid = new Label();
@@ -36,14 +30,16 @@ public class MyUI extends UI {
         final Label rule2 = new Label();
         final Label rule3 = new Label();
         final Label rule4 = new Label();
-        
         validate val = new validate();
+        
+        //setting captions and setting them as false to only appear when needed
         valid.setCaption("EMAIL IS VALID");
         invalid.setCaption("EMAIL IS INVALID!");
         valid.setVisible(false);
         invalid.setVisible(false);
         empty.setVisible(false);
 
+        //requirements
         require.setCaption("REQUIREMENTS TO VALIDATE:");
         rule1.setCaption("1. MUST have one @ character.");
         rule2.setCaption("2. MUST have atleast one '.' character.");
@@ -52,29 +48,26 @@ public class MyUI extends UI {
         email.setCaption("Enter your email address:");
         empty.setCaption("EMPTY FIELD");
         
-
+        //validation happens when only validate button has been pressed
         Button button = new Button("Validate");
         button.addClickListener( e -> {
+        	//checks if field is empty
 			if(!email.getValue().isEmpty()){
-				System.out.println(val.validate(email.getValue()));
-				if(val.validate(email.getValue()) == 4){
+				if(val.validate(email.getValue()) == 4){//4 because we want all 4 rules met
 					valid.setVisible(true);
 					invalid.setVisible(false);
 					empty.setVisible(false);
-					//val.setNum(0);
 					return;
 				}else{
 					invalid.setVisible(true);
 					valid.setVisible(false);
 					empty.setVisible(false);
-					//val.setNum(0);
 					return;
 				}
 			}else{
 				invalid.setVisible(false);
 				valid.setVisible(false);
 				empty.setVisible(true);
-				//val.setNum(0);
 			}
 			
 		});
