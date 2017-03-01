@@ -31,42 +31,57 @@ public class MyUI extends UI {
         final Label require = new Label();
         final Label valid = new Label();
         final Label invalid = new Label();
+        final Label empty = new Label();
         final Label rule1 = new Label();
         final Label rule2 = new Label();
+        final Label rule3 = new Label();
+        final Label rule4 = new Label();
         
         validate val = new validate();
         valid.setCaption("EMAIL IS VALID");
         invalid.setCaption("EMAIL IS INVALID!");
         valid.setVisible(false);
         invalid.setVisible(false);
+        empty.setVisible(false);
 
         require.setCaption("REQUIREMENTS TO VALIDATE:");
         rule1.setCaption("1. MUST have one @ character.");
         rule2.setCaption("2. MUST have atleast one '.' character.");
+        rule3.setCaption("3. MUST use gmail domain ONLY.");
+        rule4.setCaption("4. MUST have between 6 and 12 characters(NOT INCLUDING @gmail.com)");
         email.setCaption("Enter your email address:");
+        empty.setCaption("EMPTY FIELD");
         
 
         Button button = new Button("Validate");
         button.addClickListener( e -> {
 			if(!email.getValue().isEmpty()){
+				System.out.println(val.validate(email.getValue()));
 				if(val.validate(email.getValue()) == 4){
-				valid.setVisible(true);
-				invalid.setVisible(false);
-				return;
+					valid.setVisible(true);
+					invalid.setVisible(false);
+					empty.setVisible(false);
+					//val.setNum(0);
+					return;
 				}else{
 					invalid.setVisible(true);
 					valid.setVisible(false);
+					empty.setVisible(false);
+					//val.setNum(0);
+					return;
 				}
-				return;
 			}else{
-				invalid.setVisible(true);
+				invalid.setVisible(false);
 				valid.setVisible(false);
-				return;
+				empty.setVisible(true);
+				//val.setNum(0);
 			}
+			
 		});
         	
         
-        layout.addComponents(require, rule1, rule2, email, button, valid, invalid);
+        layout.addComponents(require, rule1, rule2, rule3, rule4, 
+        		email, button, valid, invalid, empty);
         layout.setMargin(true);
         layout.setSpacing(true);
         

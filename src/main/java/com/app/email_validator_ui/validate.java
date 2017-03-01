@@ -1,7 +1,6 @@
 package com.app.email_validator_ui;
 
 
-
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -9,18 +8,13 @@ import java.util.regex.Pattern;
 public class validate 
 {
 	//to keep track of number of rules the email passed
-    private static int num=0;
+    //private int num = 0;
+    //private static int atNum = 0;
 
-    public int getNum(){
-    	return num;
-    }
-    
-    public static void main(String[]args){
-    	String test = "123456543201@gmail.com";
-    	System.out.println(validate(test));
-    }
     
     public static int validate(String mail){
+    	int num = 0;
+    	int atNum = 0;
     	//array to store characters
     	char[] words = new char[mail.length()];
     	char[] rule = {'@', 'g', 'm', 'a', 'i', 'l', '.', 'c', 'o', 'm'}; 
@@ -30,9 +24,9 @@ public class validate
     		words[i] = mail.charAt(i);
     	}
     	
-    	//RULE: MUST use @gmail.com
+    	//RULE: MUST use @gmail.com also checks for one period
     	if(mail.matches(".*@gmail.com")){
-    		num++;
+    		num += 2;
     	}
 
     	/*
@@ -45,17 +39,14 @@ public class validate
     	
     	
     	//RULE: checker for @
+    	//makes sure there arent any more @ in the email other than the one before gmail.com
     	for(int k=0; k < mail.length(); k++){
     		if(words[k] == '@'){
-    			num++;
+    			atNum++;
     		}
     	}
-    	//RULE: checker for .
-    	for(int k=0; k < mail.length(); k++){
-    		if(words[k] == '.'){
-    			num++;
-    		}
-    	}
+    	if(atNum == 1)
+    		num++;
     	return num;
    }
 }
