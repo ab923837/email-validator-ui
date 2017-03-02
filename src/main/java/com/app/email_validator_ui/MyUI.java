@@ -14,7 +14,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 
-@Theme("mytheme")
+@Theme("runo")
 public class MyUI extends UI {
 
     @Override
