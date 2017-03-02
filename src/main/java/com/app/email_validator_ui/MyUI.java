@@ -43,7 +43,7 @@ public class MyUI extends UI {
         require.setCaption("REQUIREMENTS TO VALIDATE:");
         rule1.setCaption("1. MUST have one @ character.");
         rule2.setCaption("2. MUST have atleast one '.' character.");
-        rule3.setCaption("3. MUST use gmail domain ONLY.");
+        rule3.setCaption("3. MUST use gmail.com domain ONLY.");
         rule4.setCaption("4. MUST have between 6 and 12 characters(NOT INCLUDING @gmail.com)");
         email.setCaption("Enter your email address:");
         empty.setCaption("EMPTY FIELD");

@@ -7,11 +7,7 @@ import java.util.regex.Pattern;
 
 public class validate 
 {
-	//to keep track of number of rules the email passed
-    //private int num = 0;
-    //private static int atNum = 0;
 
-    
     public static int validate(String mail){
     	int num = 0;
     	int atNum = 0;
